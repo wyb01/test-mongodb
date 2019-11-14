@@ -7,7 +7,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
@@ -27,25 +26,22 @@ import java.util.Map;
  * date：15:13
  */
 public class MongoTest1 {
+
     private MongoClient mongoClient=null;
     private  MongoCollection<Document> stuCollection = null;
 
     @Before
     public void init(){
-        //1、MongoClient(host，port)
-        mongoClient = new MongoClient("127.0.0.1", 27017);
-        //2、获取你要操作的库
-        MongoDatabase db = mongoClient.getDatabase("k10");
-        //3、找到需要添加数据的集合
-        stuCollection = db.getCollection("students");
+        mongoClient = new MongoClient("120.79.178.18", 27017);     //1、MongoClient(host，port)
+        MongoDatabase db = mongoClient.getDatabase("k10");  //2、获取你要操作的库
+        stuCollection = db.getCollection("students");      //3、找到需要添加数据的集合
     }
 
     //往k10库中的students表中插入一条数据
     @Test
     public void insertOne() {
-
         //4、开始插入
-        //{"stuName":"wangermazi", "age":18,"gender":"男"}
+            //{"stuName":"wangermazi", "age":18,"gender":"男"}
         Map<String,Object> aMap = new HashMap<>();
         aMap.put("stuName","wangermazi");
         Document doc1 = new Document(aMap);
